@@ -7,21 +7,5 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-        <h1>{{ member.name }}!</h1>
-        <p>
-            Type: {{ member.type }}
-        </p>
-        <p>
-            Can Teleport: {{ 'Yes' if member.can_teleport else 'No' }}
-        </p>
-        <div class='list_header'>Equipment:</div>
-        <ul>
-            {% for item in member.inventory %}
-                <li>{{ item }}
-            {% endfor %}
-        </ul>
-
-        <a href="/">Back to Dashboard</a>
-        <a href="/team/member/delete/{{ member.id }}">Delete</a>
     </body>
 </html>
