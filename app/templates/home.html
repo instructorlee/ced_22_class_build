@@ -7,5 +7,15 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
+        <h1>Hello {{ user['first_name'] }} !</h1>
+        <hr>
+        <h3>Team</h3>
+        <ul>
+            {% for member in team  %}
+                <li> 
+                    <a href="/team/member/{{ member.id }}">{{ member.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </body>
 </html>

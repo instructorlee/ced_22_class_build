@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Member</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>{{ member.name }}!</h1>
+        <p>
+            Type: {{ member.type }}
+        </p>
+        <p>
+            Can Teleport: {{ 'Yes' if member.can_teleport else 'No' }}
+        </p>
+        <div class='list_header'>Equipment:</div>
+        <ul>
+            {% for item in member.inventory %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>
