@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for
 
 from Team import Team
 
@@ -15,8 +15,10 @@ def home():
     team = Team.members
 
     print ( team )
+    
+    return (redirect ('/team/member/234'))
 
-    return render_template('home.html', user=user_data, team=Team.members) 
+    # return render_template('home.html', user=user_data, team=Team.members) 
 
 @app.route('/team/member/<int:id>') # localhost:5000/team/member/110
 def view_team_member(id):
