@@ -1,3 +1,73 @@
+
+.dashboard__panel {
+    background-color: rgba(200, 200, 200, .7);
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.dashboard__panel--small {
+    height: 44vh;
+    background-color: rgba(200, 200, 200, .9);
+}
+
+.dashboard__panel--large {
+    height: 90vh;
+}
+
+.inventory_group {
+    margin-bottom: 5px;
+}
+
+.inventory_group___items { /* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+
+    display: flex;
+    justify-content: flex-start;
+    gap: 3px;
+}
+
+.inventory_group__title {
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin-bottom: 5px;
+}
+
+.inventory_group__item {
+
+    width: 50px;
+    height: 50px;
+    background-color: rgba(50, 50, 50, .8);
+
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.inventory_group__item img {
+    width: 100%; /* constrain image size to fit inside .inventory_item */
+    height: 100%;
+}
+
+.team_member {
+    border-bottom: 1px solid rgba(100, 100, 100, .5);
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.team_member__inner {
+    background-color: rgba(180, 180, 180, .9);
+}
+
+.team_member__inner:hover {
+    cursor: pointer;
+    background-color: rgba(93, 131, 191, 0.8);
+}
+
+.team_member__name {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
 .list_header {
     margin-top: 5px;
     font-weight: bold;

@@ -13,6 +13,10 @@ user_data = {
 def home():
     return render_template('home.html', user=user_data, team=Team.members) 
 
+@app.route('/dashboard') 
+def dashboard():
+    return render_template('dashboard.html', user = user_data, team = Team.members)
+
 @app.route('/team/member/<int:id>') # localhost:5000/team/member/110
 def view_team_member(id):
     
@@ -23,6 +27,12 @@ def view_team_member(id):
 
     else:
         return render_template('view_member.html', member = found_member)
+
+@app.route('/team/member/delete/<int:id>')
+def delete_team_member(id):
+    
+    Team.delete_member(id)
+    return redirect('/dashboard')
 
 @app.route('/team/member/add')
 def get_add_member_form():
@@ -40,7 +50,7 @@ def add_member():
 
     Team.add_member(new_team_member)
     
-    return( redirect('/') )
+    return( redirect('/dashboard') )
 
 @app.route('/team/member/update/<int:id>')
 def get_update_member_form(id):
@@ -58,7 +68,8 @@ def update_member():
 
         Team.save_member(member_to_update)
 
-    return( redirect('/') )
+    return( redirect('/dashboard') )
+
 
 
 if __name__=="__main__":   
