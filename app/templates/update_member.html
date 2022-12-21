@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home Page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Add Member</h1>
+
+        <form action="/team/member/update" method="POST">
+
+            <input type='hidden' name='id' value="{{ member.id }}">
+
+            <label for='name'>Name:</label>
+            <input type='text' name='name' value="{{ member.name }}">
+
+            <label for='type'>Type:</label>
+            <input type='text' name='type' value="{{ member.type }}">
+
+            <label for='can_teleport'>Can Teleport:</label>
+            <input type='radio' name='can_teleport' value='1' {{ 'CHECKED' if member.can_teleport else '' }}>Yes
+            <input type='radio' name='can_teleport' value='0' {{ 'CHECKED' if member.can_teleport == False else '' }}>No
+
+            <input type='submit' value='Update Member'>
+        </form>
+
+        <a href="/">Back to Dashboard</a>
+    </body>
+</html>

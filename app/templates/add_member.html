@@ -9,6 +9,20 @@
     <body>
         <h1>Add Member</h1>
 
+        <form action="/team/member/add" method="POST">
+            <label for='name'>Name:</label>
+            <input type='text' name='name'>
+
+            <label for='type'>Type:</label>
+            <input type='text' name='type'>
+
+            <label for='can_teleport'>Can Teleport:</label>
+            <input type='radio' name='can_teleport' value='1'>Yes
+            <input type='radio' name='can_teleport' value='0'>No
+
+            <input type='submit' value='Add Member'>
+        </form>
+
         <a href="/">Back to Dashboard</a>
     </body>
 </html>

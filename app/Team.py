@@ -30,9 +30,13 @@ class Team:
         cls.members.append(member_data)
 
     @classmethod
+    def save_member(cls, member_data):
+        cls.members = [member_data if data['id'] == member_data['id'] else data for data in cls.members] # list comprehension
+
+    @classmethod
     def get_member(cls, id):
-        
         found_member = None
+        
         for member in cls.members:
             if member['id'] == id:
                 found_member = member
