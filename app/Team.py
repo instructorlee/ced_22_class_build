@@ -51,24 +51,3 @@ class Team:
 
         return start_length != len(cls.members) # do not do this the first time through. Save it for extra functionality
 
-
-
-In class yesterday, someone asked about adding styling to specific elements like this:
-
-`
-<div style="width: 200px; height: 200px; background-color: red;">Some Red Text</a>
-`
-
-You were probably told to never do this. It is important to know that, in CSS, there are really, mostly, only guidelines and good practices.
-
-It is good practice to NOT do this because it makes it difficult to style a page when the CSS is in different places.
-
-However, when working with dynamic data, and, later, React, it is totally acceptable to do something 'surgical' when you need that type of control.ConnectionRefusedError
-
-For example, using a dynamic color, we can do this:
-
-`
-<div class='box' style="background-color: {{ color }};">Some Red Text</a>
-`
-
-This allows us to put the basic properties of our element in a CSS file. Then just change the background color as needed.
