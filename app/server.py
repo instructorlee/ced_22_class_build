@@ -11,7 +11,7 @@ user_data = {
 
 @app.route('/') # root / home
 def home():
-    return render_template('home.html', user=user_data, team=Team.members) 
+    return render_template('home.html') 
 
 @app.route('/dashboard') 
 def dashboard():
