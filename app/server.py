@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect
 
 from Team import Team
 
+from character import Character
+
 app = Flask(__name__)
 
 user_data = {
@@ -15,7 +17,7 @@ def home():
 
 @app.route('/dashboard') 
 def dashboard():
-    return render_template('dashboard.html', user = user_data, team = Team.members)
+    return render_template('dashboard.html', user = user_data, team = Character.get_all()) # list of team members
 
 @app.route('/team/member/<int:id>') # localhost:5000/team/member/110
 def view_team_member(id):
@@ -31,7 +33,7 @@ def view_team_member(id):
 @app.route('/team/member/delete/<int:id>')
 def delete_team_member(id):
     
-    Team.delete_member(id)
+    Character.destroy(id)
     return redirect('/dashboard')
 
 @app.route('/team/member/add')
@@ -69,8 +71,6 @@ def update_member():
         Team.save_member(member_to_update)
 
     return( redirect('/dashboard') )
-
-
 
 if __name__=="__main__":   
     app.run(debug=True) 
