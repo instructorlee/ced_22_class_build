@@ -42,10 +42,58 @@ class Character:
             DELETE FROM 
                 characters 
             WHERE 
-                id = %(idx)s;
+                id = %(id)s;
         """
         
-        return connectToMySQL('dec_22_cb').query_db(query, {'idx': id})
+        return connectToMySQL('dec_22_cb').query_db(query, {'id': id})
+
+    @classmethod
+    def save(cls, data):
+
+        query = """
+            INSERT INTO 
+                characters 
+                (type, name, can_teleport, power_points) 
+            VALUES 
+                (%(type)s, %(name)s, %(can_teleport)s, %(power_points)s);
+        """
+
+        result = connectToMySQL('dec_22_cb').query_db(query, data)
+
+        return result
+
+    @classmethod
+    def get_one(cls, id):
+
+        query  = """
+            SELECT 
+                * 
+            FROM 
+                characters 
+            WHERE 
+                id = %(id)s;
+        """
+
+        result = connectToMySQL('dec_22_cb').query_db(query, {'id': id})
+
+        return cls(result[0]) if result else None
+
+    @classmethod
+    def update(cls, data):
+
+        query = """
+            UPDATE 
+                characters 
+            SET 
+                type=%(type)s,
+                name=%(name)s,
+                can_teleport=%(can_teleport)s,
+                power_points=%(power_points)s
+            WHERE 
+                id = %(id)s;
+        """
+
+        return connectToMySQL('dec_22_cb').query_db(query, data)
 
     def run(self, direction, map):
 

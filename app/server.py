@@ -47,28 +47,30 @@ def add_member():
         'name': request.form['name'],
         'type': request.form['type'],
         'can_teleport': request.form['can_teleport'],
-        'inventory': [] # how can inventory be added since it is not passed in?
+        'power_points': request.form['power_points']
     }
 
-    Team.add_member(new_team_member)
+    Character.save(new_team_member)
     
     return( redirect('/dashboard') )
 
 @app.route('/team/member/update/<int:id>')
 def get_update_member_form(id):
-    return render_template('update_member.html', member = Team.get_member(id))
+    return render_template('update_member.html', member = Character.get_one(id))
 
 @app.route('/team/member/update', methods=['POST'])
 def update_member():
 
-    member_to_update = Team.get_member(int(request.form['id']))
+    member_to_update = Character.get_one(int(request.form['id']))
     
     if member_to_update:
-        member_to_update['name'] = request.form['name']
-        member_to_update['type'] = request.form['type']
-        member_to_update['can_teleport'] = int(request.form['can_teleport'])
-
-        Team.save_member(member_to_update)
+        Character.update({
+            'id': member_to_update.id,
+            'name': request.form['name'],
+            'type': request.form['type'],
+            'can_teleport': request.form['can_teleport'],
+            'power_points': request.form['power_points']
+        })
 
     return( redirect('/dashboard') )
 
