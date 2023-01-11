@@ -1,4 +1,4 @@
-from character import Character
+from app.models.character import Character
 
 class Team:
 
