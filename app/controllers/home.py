@@ -10,8 +10,8 @@ user_data = {
 
 @app.route('/') # root / home
 def home():
-    return render_template('home.html') 
+    return render_template('home/home.html') 
 
 @app.route('/dashboard') 
 def dashboard():
-    return render_template('dashboard.html', user = user_data, team = Character.get_all()) # list of team members
+    return render_template('home/dashboard.html', user = user_data, team = Character.get_all()) # list of team members

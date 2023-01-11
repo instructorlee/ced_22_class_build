@@ -14,7 +14,7 @@ def view_team_member(id):
         return render_template('error.html')
 
     else:
-        return render_template('view_member.html', member = found_member)
+        return render_template('character/view.html', member = found_member)
 
 @app.route('/team/member/delete/<int:id>')
 def delete_team_member(id):
@@ -24,7 +24,7 @@ def delete_team_member(id):
 
 @app.route('/team/member/add')
 def get_add_member_form():
-    return render_template('add_member.html')
+    return render_template('character/add.html')
 
 @app.route('/team/member/add', methods=['POST'])
 def add_member():
@@ -42,7 +42,7 @@ def add_member():
 
 @app.route('/team/member/update/<int:id>')
 def get_update_member_form(id):
-    return render_template('update_member.html', member = Character.get_one(id))
+    return render_template('character/update.html', member = Character.get_one(id))
 
 @app.route('/team/member/update', methods=['POST'])
 def update_member():
