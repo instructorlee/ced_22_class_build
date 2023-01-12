@@ -1,6 +1,6 @@
 from app import app
 
-from app.controllers import home, characters
+from app.controllers import home, characters, items
 
 
 

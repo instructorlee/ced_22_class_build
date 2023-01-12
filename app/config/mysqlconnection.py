@@ -9,6 +9,7 @@ class MySQLConnection:
                                     cursorclass = pymysql.cursors.DictCursor,
                                     autocommit = True)
         self.connection = connection
+        
     def query_db(self, query, data=None):
         with self.connection.cursor() as cursor:
             try:

@@ -25,21 +25,17 @@
                                     Inventory
                                 </div>
                                 <div class='inventory_group___items'>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/crossbow.png') }}'/>
-                                    </div>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/food_ale.png') }}'/>
-                                    </div>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/food_bread.png') }}'/>
-                                    </div>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/gold.png') }}'/>
-                                    </div>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/longsword.png') }}'/>
-                                    </div>
+                                    {% for item in team_items %}
+                                        {% if not item.is_magical %}
+                                            {% set image_path = "/images/{}.png".format(item.image_slug)%}
+                                            <div class='inventory_group__item'>
+                                                <a href='/item/update/{{ item.id }}'>
+                                                    <img src='{{ url_for('static', filename= image_path ) }}'/>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+
+                                    {% endfor %}
                                 </div>
                             </div>
 
@@ -49,16 +45,22 @@
                                 </div>
 
                                 <div class='inventory_group___items'>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/ancient_magic_scroll.png') }}'/>
-                                    </div>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/cerulean_compass.png') }}'/>
-                                    </div>
-                                    <div class='inventory_group__item'>
-                                        <img src='{{ url_for('static', filename='/images/screaming_daggar.png') }}'/>
-                                    </div>
+                                    {% for item in team_items %}
+                                        {% if item.is_magical %}
+                                            {% set image_path = "/images/{}.png".format(item.image_slug)%}
+                                            <div class='inventory_group__item'>
+                                                <a href='/item/update/{{ item.id }}'>
+                                                    <img src='{{ url_for('static', filename= image_path ) }}'/>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+
+                                    {% endfor %}
                                 </div>
+                            </div>
+
+                            <div class='text-center'>
+                                <a href='/item/add'>Add Item</a>
                             </div>
                         </div>
                         <div class='col-12 dashboard__panel dashboard__panel--small'>

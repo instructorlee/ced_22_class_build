@@ -2,6 +2,7 @@ from flask import render_template, redirect, request
 from app import app
 
 from app.models.character import Character
+from app.models.item import Item
 
 user_data = {
     'first_name': 'Fred',
@@ -14,4 +15,4 @@ def home():
 
 @app.route('/dashboard') 
 def dashboard():
-    return render_template('home/dashboard.html', user = user_data, team = Character.get_all()) # list of team members
+    return render_template('home/dashboard.html', user = user_data, team = Character.get_all(), team_items=Item.get_all()) # list of team members

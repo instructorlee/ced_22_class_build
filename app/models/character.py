@@ -1,5 +1,7 @@
 from app.config.mysqlconnection import connectToMySQL
 
+from app.models.item import Item
+
 class Character:
 
     NOT_ENOUGH_POWER_POINTS = 'not_enough_power_points'
@@ -11,6 +13,8 @@ class Character:
         self.name = data['name']
         self.power_points = data['power_points']
         self.can_teleport = data['can_teleport']
+
+        self.items = []
    
     @classmethod
     def get_all(cls):
@@ -69,14 +73,34 @@ class Character:
             SELECT 
                 * 
             FROM 
-                characters 
-            WHERE 
-                id = %(id)s;
+                dec_22_cb.characters
+
+            LEFT JOIN items ON items.character_id = characters.id
+
+            WHERE
+                characters.id = %(id)s;
         """
 
-        result = connectToMySQL('dec_22_cb').query_db(query, {'id': id})
+        results = connectToMySQL('dec_22_cb').query_db(query, {'id': id})
 
-        return cls(result[0]) if result else None
+        if not results:
+            return None
+
+        character = Character(results[0])
+
+        for row in results:
+            if row['items.id']: # skip when character has no items
+                character.items.append(Item({
+                    'id': row['items.id'],
+                    'name': row['items.name'],
+                    'image_slug': row['image_slug'],
+                    'is_magical': row['is_magical'],
+                    'attack': row['attack'],
+                    'defense': row['defense'],
+                    'character_id': row['character_id']
+                }))
+
+        return character
 
     @classmethod
     def update(cls, data):
