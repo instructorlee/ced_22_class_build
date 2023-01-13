@@ -1,6 +1,7 @@
 from app import app
+from app.controllers import home, characters, items, users
 
-from app.controllers import home, characters, items
+app.secret_key = "SomeSuperSecretKey"
 
 
 if __name__=="__main__":   

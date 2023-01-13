@@ -62,6 +62,23 @@ class User:
         return cls(results[0]) if results else None
 
     @classmethod
+    def get_by_email(cls, email_address):
+
+        query  = """
+            SELECT 
+                * 
+            FROM 
+                users 
+
+            WHERE 
+                email_address=%(email_address)s
+        """
+
+        results = connectToMySQL('dec_22_cb').query_db(query, {'email_address': email_address})
+
+        return cls(results[0]) if results else None
+
+    @classmethod
     def update(cls, data):
 
         query = """
@@ -92,7 +109,7 @@ class User:
     @staticmethod
     def validate_registration(user):
         is_valid = True
-        
+
         if User.get_by_email(user['email_address']):
             flash("Email already taken", "register")
             is_valid = False
@@ -109,8 +126,8 @@ class User:
             flash("Passwords need to match","register")
             is_valid = False
 
-        if len(user['first_name']) < 3:
-            flash("First name must be at least 3 characters", "register")
+        if len(user['first_name']) == 0:
+            flash("Enter a first name", "register")
             is_valid = False
 
         if len(user['last_name']) < 3:
