@@ -13,6 +13,7 @@ class Character:
         self.name = data['name']
         self.power_points = data['power_points']
         self.can_teleport = data['can_teleport']
+        self.user_id = data['user_id']
 
         self.items = []
    

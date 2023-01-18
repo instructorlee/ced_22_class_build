@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, session
 from app import app
 
 from app.models.character import Character
@@ -15,4 +15,8 @@ def home():
 
 @app.route('/dashboard') 
 def dashboard():
-    return render_template('home/dashboard.html', user = user, team = Character.get_all(), team_items=Item.get_all())
+
+    if 'user_id' not in session:
+        return redirect('/')
+
+    return render_template('home/dashboard_alt.html', user = user, team = Character.get_all(), team_items=Item.get_all())

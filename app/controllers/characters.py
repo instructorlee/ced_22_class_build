@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, session
 from app import app
 
 from app.models.character import Character
@@ -42,7 +42,16 @@ def add_member():
 
 @app.route('/team/member/update/<int:id>')
 def get_update_member_form(id):
-    return render_template('character/update.html', member = Character.get_one(id))
+
+    if 'user_id' not in session:
+        return redirect('/')
+
+    character = Character.get_one(id)
+
+    if character and character.user_id == int(session['user_id']):
+        return render_template('character/update.html', member=Character.get_one(id))
+    
+    return  redirect('/dashboard')
 
 @app.route('/team/member/update', methods=['POST'])
 def update_member():

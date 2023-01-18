@@ -3,27 +3,6 @@ from app.models.character import Character
 class Team:
 
     members = [
-        Character({
-                'id': 1,
-                'type': 'FuzzBall',
-                'name': 'Fred',
-                'power_points': 5,
-                'can_teleport': True
-            }),
-        Character({
-                'id': 2,
-                'type': 'FurOFury',
-                'name': 'Fiora',
-                'power_points': 8,
-                'can_teleport': False
-            }),
-        Character({
-                'id': 3,
-                'type': 'BeatleBop',
-                'name': 'Bob',
-                'power_points': 3,
-                'can_teleport': True
-            })
     ]
 
     @classmethod

@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, flash
+from flask import session, redirect, request, flash
 from app import app
 from flask_bcrypt import Bcrypt
 
@@ -37,4 +37,11 @@ def login():
         flash("Invalid Credentials", "login")
         return redirect('/')
 
+    session['user_id'] = user.id
+
     return redirect('/dashboard')
+
+@app.route('/user/logout')
+def logout():
+    session.clear()
+    return redirect('/')
