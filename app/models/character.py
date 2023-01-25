@@ -87,7 +87,7 @@ class Character:
         if not results:
             return None
 
-        character = Character(results[0])
+        character = cls(results[0])
 
         for row in results:
             if row['items.id']: # skip when character has no items

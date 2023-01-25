@@ -44,4 +44,5 @@ def login():
 @app.route('/user/logout')
 def logout():
     session.clear()
-    return redirect('/')
+    id = 5
+    return redirect(f'/user/view/{id}') # /user/view/5

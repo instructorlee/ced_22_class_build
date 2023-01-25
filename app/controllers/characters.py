@@ -59,6 +59,7 @@ def update_member():
     member_to_update = Character.get_one(int(request.form['id']))
     
     if member_to_update:
+        
         Character.update({
             'id': member_to_update.id,
             'name': request.form['name'],

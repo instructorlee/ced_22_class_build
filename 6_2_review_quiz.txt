@@ -1,0 +1,71 @@
+- Which of these is the correct format:
+
+            A - '/team/member/<integer:id>'
+            B - '/team/member/<int:id>'
+            C - '/team/member/<number:id>'
+
+- After what process should we use redirect?
+
+- Which of these is a good example of a method name in Python:
+            A - update_user()
+            B - bobby_favorite_food()
+            C - deleteUser()
+
+- What's wrong with this query:
+            query  = """
+                DELETE FROM 
+                    characters 
+            """
+
+- Three things wrong with this form:
+
+            <form class='row' action='/team/member/add' method="POST">
+
+                <div class='col-6'>
+                    <label for='name'>Name:</label>
+                    <input type='text' name='name'>
+                </div>
+
+                <div class='col-6'>
+                    <label for='type'>Type:</label>
+                    <input type='text' name='type'>
+                </div>
+
+                <div class='col-6'>
+                    <label for='power_points'>Power Points:</label>
+                    <input type='number' name='power_points'>
+                </div>
+
+                <div class='col-6'>
+                    <label for='can_teleport'>Can Teleport:</label>
+                    <input type='radio' name='can_teleport' value='1'>Yes
+                    <input type='radio' name='can_teleport' value='0'>No
+                </div>
+
+                <div class='col-12 text-center'>
+                    << submit button >>
+                    <a class='btn btn-info' href="/dashboard">Back to Dashboard</a>
+                </div>
+            </form>
+
+- What three pieces of information do you need to access your database?
+
+- How can we refactor this method:
+            @app.route('/team/member/update', methods=['POST'])
+            def update_member():
+
+                member_to_update = Character.get_one(int(request.form['id']))
+                
+                if member_to_update:
+
+                    Character.update(request.form)
+
+                    Character.update({
+                        'id': member_to_update.id,
+                        'name': request.form['name'],
+                        'type': request.form['type'],
+                        'can_teleport': request.form['can_teleport'],
+                        'power_points': request.form['power_points']
+                    })
+
+                return( redirect('/dashboard') )
